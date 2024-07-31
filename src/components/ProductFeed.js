@@ -1,4 +1,5 @@
-import React from "react";
+import Product from "./Product"
+
 
 export default function ProductFeed({ products }) {
   return (
@@ -8,7 +9,15 @@ export default function ProductFeed({ products }) {
     ))} */}
 
       {products.map(({ id, title, price, description, category, image }) => (
-        <p>{title}</p>
+        <Product
+            key={id}
+            id={id}
+            title={title}
+            price={price}
+            description={description}
+            category={category}
+            image={image}
+            />
       ))}
     </div>
   );
