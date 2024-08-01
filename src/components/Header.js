@@ -4,7 +4,9 @@ import {
   MagnifyingGlassIcon,
   Bars3Icon,
   ShoppingCartIcon,
+  ChevronDownIcon,
   ShieldCheckIcon,
+  MapPinIcon,
 } from "@heroicons/react/24/outline";
 
 function Header() {
@@ -16,15 +18,27 @@ function Header() {
           {/* {Logo} */}
           <Image
             src="https://links.papareact.com/f90"
-            width={120}
-            height={30}
+            width={100}
+            height={20}
             objectFit="contain" // for aspect ratio
             className="cursor-pointer"
           />
         </div>
+        
+        <div className="hidden md:block text-white items-center text-xs mx-6 whitespace-nowrap">
+          <p>Delivering to New Delhi 110043</p>
+          <div className="flex items-center space-x-2">
+            <MapPinIcon className="h-4 w-4" />
+            <p className="font-extrabold text-sm">Update Location</p>
+          </div>
+        </div>
 
         {/* {Search} */}
         <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500 flex items-center ml-6"> {/* Adjusted margin-left */}
+        <div className="h-10 pl-2 cursor-pointer text-center bg-gray-300 items-center rounded-l-md flex absolute font-semibold text-sm ">
+            All
+            <ChevronDownIcon className="h-10 p-3" />
+          </div>
           <input
             type="text"
             className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"
