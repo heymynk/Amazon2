@@ -50,6 +50,7 @@ export default function Product({
           height={120}
           width={120}
           objectFit="contain"
+          alt="Loading..."
         />
       </div>
 

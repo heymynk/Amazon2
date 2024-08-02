@@ -1,30 +1,57 @@
 import React from "react";
 import Image from "next/image";
+
+// Imports for Firebase Auth
+import { signInWithRedirect, getAuth } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+
+// Imports for NextAuth
+import { signIn as nextSignIn, signOut as nextSignOut, useSession } from "next-auth/react";
+import { auth, provider } from "../firebaseConfig";
+
+// Imports for Icons
 import {
   MagnifyingGlassIcon,
   Bars3Icon,
   ShoppingCartIcon,
   ChevronDownIcon,
-  ShieldCheckIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 
-function Header() {
+const Header = () => {
+  const { data: session } = useSession();
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithRedirect(getAuth(), provider);
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await nextSignOut();
+    } catch (error) {
+      console.error("Error during sign-out:", error);
+    }
+  };
+
   return (
     <header>
-      {/* {Top Nav} */}
+      {/* Top Nav */}
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
         <div className="mt-2 ml-2 flex items-center flex-grow sm:flex-grow-0">
-          {/* {Logo} */}
+          {/* Logo */}
           <Image
             src="https://links.papareact.com/f90"
             width={100}
             height={20}
-            objectFit="contain" // for aspect ratio
+            objectFit="contain"
             className="cursor-pointer"
           />
         </div>
-        
+
         <div className="hidden md:block text-white items-center text-xs mx-6 whitespace-nowrap">
           <p>Delivering to New Delhi 110043</p>
           <div className="flex items-center space-x-2">
@@ -33,9 +60,9 @@ function Header() {
           </div>
         </div>
 
-        {/* {Search} */}
-        <div className="hidden sm:flex h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500 items-center ml-6"> {/* Adjusted margin-left */}
-        <div className="h-10 pl-2 cursor-pointer text-center bg-gray-300 items-center rounded-l-md flex absolute font-semibold text-sm ">
+        {/* Search */}
+        <div className="hidden sm:flex h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500 items-center ml-6">
+          <div className="h-10 pl-2 cursor-pointer text-center bg-gray-300 items-center rounded-l-md flex absolute font-semibold text-sm">
             All
             <ChevronDownIcon className="h-10 p-3" />
           </div>
@@ -46,10 +73,17 @@ function Header() {
           <MagnifyingGlassIcon className="h-12 p-4" />
         </div>
 
-        {/* {Right Side} */}
+        {/* Right Side */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          <div className="link">
-            <p>Hello Mayank Singh</p>
+          <div className="relative items-center cursor-pointer hidden md:block">
+            <span className="flex items-center px-4 py-2">
+              <ChevronDownIcon className="h-5 w-5 mr-2 text-gray-300" />
+              EN
+            </span>
+          </div>
+
+          <div onClick={!session ? handleSignIn : handleSignOut} className="link">
+            <p>{session ? `Hello, ${session.user.name}` : 'Sign In'}</p>
             <p className="font-extrabold md:text-sm">Account & List</p>
           </div>
           <div className="link">
@@ -68,7 +102,7 @@ function Header() {
         </div>
       </div>
 
-      {/* {Bottom Nav} */}
+      {/* Bottom Nav */}
       <div className="flex items-center bg-amazon_blue-light text-white text-sm space-x-3 p-2 pl-6">
         <p className="link flex items-center">
           <Bars3Icon className="h-6 mr-1" />
@@ -89,6 +123,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

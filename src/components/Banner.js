@@ -17,13 +17,13 @@ export default function Banner() {
       >
 
         <div>
-          <img loading="lazy" src="https://links.papareact.com/gi1" alt="" />
+          <img loading="lazy" src="https://links.papareact.com/gi1" alt="Loading..." />
         </div>
         <div>
-        <img loading="lazy" src="https://links.papareact.com/6ff" alt="" />
+        <img loading="lazy" src="https://links.papareact.com/6ff" alt="Loading..." />
         </div>
         <div>
-        <img loading="lazy" src="https://links.papareact.com/7ma" alt="" />
+        <img loading="lazy" src="https://links.papareact.com/7ma" alt="Loading..." />
         </div>
 
 
