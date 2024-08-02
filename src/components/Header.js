@@ -34,7 +34,7 @@ function Header() {
         </div>
 
         {/* {Search} */}
-        <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500 flex items-center ml-6"> {/* Adjusted margin-left */}
+        <div className="hidden sm:flex h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500 items-center ml-6"> {/* Adjusted margin-left */}
         <div className="h-10 pl-2 cursor-pointer text-center bg-gray-300 items-center rounded-l-md flex absolute font-semibold text-sm ">
             All
             <ChevronDownIcon className="h-10 p-3" />

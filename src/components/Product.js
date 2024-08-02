@@ -44,11 +44,11 @@ export default function Product({
         {category}
       </p>
 
-      <div className="flex-1 flex items-center justify-center mb-4">
+      <div className="flex-1 flex items-center justify-center mb-2">
         <Image
           src={image}
-          height={200}
-          width={200}
+          height={120}
+          width={120}
           objectFit="contain"
         />
       </div>
