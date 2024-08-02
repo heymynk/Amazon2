@@ -1,14 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-// Imports for Firebase Auth
-import { signInWithRedirect, getAuth } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth";
-
-// Imports for NextAuth
-import { signIn as nextSignIn, signOut as nextSignOut, useSession } from "next-auth/react";
-import { auth, provider } from "../firebaseConfig";
-
 // Imports for Icons
 import {
   MagnifyingGlassIcon,
@@ -18,12 +10,17 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 
+
+
+import { useAuth } from "../context/AuthContext";
+
 const Header = () => {
-  const { data: session } = useSession();
+
+  const { user, googleSignIn, logOut } = useAuth();
 
   const handleSignIn = async () => {
     try {
-      await signInWithRedirect(getAuth(), provider);
+      await googleSignIn();
     } catch (error) {
       console.error("Error during sign-in:", error);
     }
@@ -31,11 +28,12 @@ const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      await nextSignOut();
+      await logOut();
     } catch (error) {
       console.error("Error during sign-out:", error);
     }
   };
+
 
   return (
     <header>
@@ -82,8 +80,8 @@ const Header = () => {
             </span>
           </div>
 
-          <div onClick={!session ? handleSignIn : handleSignOut} className="link">
-            <p>{session ? `Hello, ${session.user.name}` : 'Sign In'}</p>
+          <div onClick={!user ? handleSignIn : handleSignOut} className="link">
+            <p>{user ? `Hello, ${user}` : 'Not logged in'}</p>
             <p className="font-extrabold md:text-sm">Account & List</p>
           </div>
           <div className="link">
