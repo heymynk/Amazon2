@@ -1,6 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
+
+import { useRouter } from "next/router";
+
+
 // Imports for Icons
 import {
   MagnifyingGlassIcon,
@@ -26,6 +30,11 @@ const Header = () => {
     }
   };
 
+
+
+
+
+
   const handleSignOut = async () => {
     try {
       await logOut();
@@ -33,6 +42,8 @@ const Header = () => {
       console.error("Error during sign-out:", error);
     }
   };
+
+  const router = useRouter();
 
 
   return (
@@ -42,9 +53,10 @@ const Header = () => {
         <div className="mt-2 ml-2 flex items-center flex-grow sm:flex-grow-0">
           {/* Logo */}
           <Image
+            onClick={()=> router.push("/")}
             src="https://links.papareact.com/f90"
-            width={100}
-            height={20}
+            width={130}
+            height={40}
             objectFit="contain"
             className="cursor-pointer"
           />
@@ -81,14 +93,14 @@ const Header = () => {
           </div>
 
           <div onClick={!user ? handleSignIn : handleSignOut} className="link">
-            <p>{user ? `Hello, ${user}` : 'Not logged in'}</p>
+            <p>{user ? `Hello, ${user.displayName}` : 'Sign in'}</p>
             <p className="font-extrabold md:text-sm">Account & List</p>
           </div>
           <div className="link">
             <p>Return</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
-          <div className="relative link flex items-center">
+          <div onClick={() => router.push("/checkout")} className="relative link flex items-center">
             <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
               0
             </span>

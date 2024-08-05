@@ -5,6 +5,10 @@ import ProductFeed from "../components/ProductFeed";
 
 import { AuthContextProvider } from "../context/AuthContext";
 
+
+
+
+
 export default function Home({ products }) {
   return (
     <AuthContextProvider>
@@ -15,7 +19,7 @@ export default function Home({ products }) {
         {/* {Header} */}
         <Header />
 
-        <main className="max-w-screen-2xl mx-auto ">
+        <main className="max-w-screen-2xl mx-auto">
           {/* {Banner} */}
 
           <Banner />
@@ -23,6 +27,7 @@ export default function Home({ products }) {
           {/* {ProductFeed} */}
 
           <ProductFeed products={products} />
+          
         </main>
       </div>
     </AuthContextProvider>
