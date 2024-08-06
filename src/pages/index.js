@@ -9,6 +9,7 @@ import { AuthContextProvider } from "../context/AuthContext";
 
 
 
+
 export default function Home({ products }) {
   return (
     <AuthContextProvider>
